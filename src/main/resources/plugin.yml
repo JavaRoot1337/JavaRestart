@@ -1,0 +1,13 @@
+name: JavaRestart
+version: ${project.version}
+main: ru.javaroot.jrestart.JRestart
+api-version: 1.21
+authors: [JavaRoot]
+commands:
+  jrestart:
+    description: Main command for JRestart
+    usage: /jrestart
+permissions:
+  jrestart.admin:
+    description: Admin permission
+    default: op

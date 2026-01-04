@@ -1,0 +1,32 @@
+messages:
+  usage: "&cИспользуйте: /jrestart [reload|now|cancel|time|vote]"
+  reload: "&aКонфигурация перезагружена."
+  time_remaining: "&7До рестарта осталось: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
+  restart_cancelled: "&aРестарт отменен."
+  manual_restart_scheduled: "&aРучной рестарт запланирован через &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек. (%type%)."
+  no_restart_scheduled: "&cРестарт не запланирован."
+  title_technical: "&cТехнический рестарт"
+  title_daily: "&#3DFF24Ежедневный рестарт"
+  title_vote: "&#FF8B1DРестарт по голосам принят"
+  bossbar_vote: "&#FF8B1DРестарт по голосам &7через: &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
+  vote_started: "&aВы проголосовали за рестарт. &e(%current%/%needed%)"
+  vote_already: "&cВы уже голосовали."
+  vote_not_enough_players: "&cНедостаточно игроков для голосования. Минимум: %min%"
+  vote_broadcast: "&eИгрок %player% проголосовал за рестарт. &f(%current%/%needed%) &7Напишите /jrestart vote" 
+  title_save: "&cРестарт. Мир сохранен."
+  subtitle_save: "&fСледующие изменения в мире не будут сохранены"
+  title_bye: "&cПерезагрузка..."
+  bossbar_technical: "&cТехнический рестарт &7через: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
+  bossbar_daily: "&#3DFF24Ежедневный рестарт &7через: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
+  kick_message: "&cСервер перезагружается."
+  
+  format:
+     seconds: 'секунд'
+     second: 'секунда'
+     minutes: 'минут'
+     minute: 'минута'
+     hours: 'часов'
+     hour: 'час'
+     days: 'дней'
+     day: 'день'
+     splitter: 'и '
