@@ -19,8 +19,8 @@ public class VoteManager {
         if (plugin.getRestartManager().isRestartScheduled()) {
             player.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(
                     plugin.getMessagesConfig().getMsg("manual_restart_scheduled", "&cRestart already scheduled.")
-                            .replace("%time%", plugin.getRestartManager().getTimeUntilNextScheduled() + "") // simple
-                                                                                                            // fallback
+                            .replace("%time%", plugin.getRestartManager().getTimeUntilNextScheduled() + "") 
+                                                                                                            
                             .replace("%type%", "ANY")));
             return;
         }
@@ -47,7 +47,7 @@ public class VoteManager {
     public void checkVotes(Player voter) {
         int online = Bukkit.getOnlinePlayers().size();
         if (online == 0)
-            return; // Should not happen if triggered by player
+            return; 
 
         int percentage = plugin.getConfig().getInt("vote.percentage", 70);
         int needed = (int) Math.ceil(online * (percentage / 100.0));
@@ -56,10 +56,10 @@ public class VoteManager {
         if (current >= needed) {
             int time = plugin.getConfig().getInt("vote.restart_time", 60);
             plugin.getRestartManager().setManualRestart(time, RestartType.VOTE);
-            votes.clear(); // Reset votes
+            votes.clear(); 
         } else {
             if (voter != null) {
-                // Broadcast vote
+                
                 String msg = plugin.getMessagesConfig().getRawMsg("vote_broadcast",
                         "&ePlayer %player% voted. (%current%/%needed%)");
                 msg = msg.replace("%player%", voter.getName())
@@ -67,9 +67,9 @@ public class VoteManager {
                         .replace("%needed%", String.valueOf(needed));
                 Bukkit.broadcast(LegacyComponentSerializer.legacyAmpersand().deserialize(msg));
 
-                // Personal message
-                // Actually broadcast covers it, but maybe user wants specific feedback?
-                // The prompt says "vote_started: &aВы проголосовали..."
+                
+                
+                
                 String personal = plugin.getMessagesConfig().getRawMsg("vote_started", "&aVoted. (%current%/%needed%)");
                 personal = personal.replace("%current%", String.valueOf(current))
                         .replace("%needed%", String.valueOf(needed));

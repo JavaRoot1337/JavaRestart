@@ -5,9 +5,18 @@ api-version: 1.21
 authors: [JavaRoot]
 commands:
   jrestart:
-    description: Main command for JRestart
+    description: главная команда
     usage: /jrestart
 permissions:
+  jrestart.use:
+    description: использование команд
+    default: true
+  jrestart.vote:
+    description: голос рестарта
+    default: true
   jrestart.admin:
-    description: Admin permission
+    description: адм пермс
     default: op
+    children:
+      jrestart.use: true
+      jrestart.vote: true

@@ -26,9 +26,9 @@ public class ConfigManager {
         List<String> raw = plugin.getConfig().getStringList("restarts");
         for (String s : raw) {
             try {
-                // Format: Day;HH;MM
+                
                 String[] parts = s.split(";");
-                // Handle localized inputs
+                
                 String dayStr = parts[0].trim();
                 int hour = Integer.parseInt(parts[1].trim());
                 int minute = Integer.parseInt(parts[2].trim());
@@ -74,7 +74,7 @@ public class ConfigManager {
             case "воскресенье":
                 return DayOfWeek.SUNDAY;
             default:
-                // Fallback to strict enum parsing which throws exception if invalid
+                
                 return DayOfWeek.valueOf(day.toUpperCase());
         }
     }

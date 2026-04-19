@@ -40,6 +40,10 @@ public class RestartCommand implements CommandExecutor, TabCompleter {
                     sender.sendMessage(toComponent("&cOnly players can vote."));
                     return true;
                 }
+                if (!sender.hasPermission("jrestart.vote")) {
+                    sender.sendMessage(msg("no_permission", "&cYou do not have permission."));
+                    return true;
+                }
                 plugin.getVoteManager().handleVote((Player) sender);
                 break;
             case "reload":
@@ -57,12 +61,8 @@ public class RestartCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 plugin.getRestartManager().cancelManualRestart();
-                // sender.sendMessage(msg("restart_cancelled", "&aRestart cancelled.")); //
-                // Already broadcasted
                 break;
             case "time":
-                // ... (time logic)
-                plugin.getRestartManager().isRestartScheduled(); // Check needed?
                 long remaining = plugin.getRestartManager().getTimeUntilNextScheduled();
                 if (remaining <= 0) {
                     sender.sendMessage(msg("no_restart_scheduled", "&cNo restart scheduled."));
@@ -79,8 +79,6 @@ public class RestartCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 if (args.length >= 2 && args[1].equalsIgnoreCase("vote")) {
-                    // /jrestart now vote
-                    // Start vote restart immediately (as if vote passed)
                     int time = plugin.getConfig().getInt("vote.restart_time", 60);
                     plugin.getRestartManager().setManualRestart(time, RestartType.VOTE);
                     String rawMsg = plugin.getMessagesConfig().getRawMsg("manual_restart_scheduled",
@@ -106,9 +104,9 @@ public class RestartCommand implements CommandExecutor, TabCompleter {
         }
         String typeStr = args[1].toLowerCase();
         RestartType type;
-        if (typeStr.equals("technical") || typeStr.equals("тех") || typeStr.equals("технический")) {
+        if (typeStr.equals("technical") || typeStr.equals("С‚РµС…") || typeStr.equals("С‚РµС…РЅРёС‡РµСЃРєРёР№")) {
             type = RestartType.TECHNICAL;
-        } else if (typeStr.equals("daily") || typeStr.equals("ежедневный")) {
+        } else if (typeStr.equals("daily") || typeStr.equals("РµР¶РµРґРЅРµРІРЅС‹Р№")) {
             type = RestartType.DAILY;
         } else if (typeStr.equals("vote")) {
             type = RestartType.VOTE;
@@ -156,7 +154,7 @@ public class RestartCommand implements CommandExecutor, TabCompleter {
                     .filter(s -> s.startsWith(args[1].toLowerCase()))
                     .collect(Collectors.toList());
         } else if (args.length == 3 && args[0].equalsIgnoreCase("now")) {
-            return Arrays.asList("60", "300", "1800"); // suggestions
+            return Arrays.asList("60", "300", "1800");
         }
 
         return new ArrayList<>();

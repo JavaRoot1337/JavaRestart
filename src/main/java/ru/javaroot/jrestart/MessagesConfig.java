@@ -72,7 +72,7 @@ public class MessagesConfig {
     private String colorize(String message) {
         if (message == null)
             return "";
-        // Hex support &#RRGGBB
+        
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("&#([A-Fa-f0-9]{6})");
         java.util.regex.Matcher matcher = pattern.matcher(message);
         StringBuffer buffer = new StringBuffer();

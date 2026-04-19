@@ -15,7 +15,7 @@ public class TimeUtils {
                 .replace("%hours%", String.valueOf(hours))
                 .replace("%minutes%", String.valueOf(minutes))
                 .replace("%seconds%", String.valueOf(seconds))
-                .replace("%time%", formatTime(totalSeconds, config)); // Keep support for smart format just in case
+                .replace("%time%", formatTime(totalSeconds, config)); 
     }
 
     public static String formatTime(long totalSeconds, MessagesConfig messagesConfig) {
@@ -44,7 +44,7 @@ public class TimeUtils {
             sb.append(minutes).append(" ").append(getUnit(minutes, messagesConfig, "minutes", "minute"));
             added = true;
         }
-        if (seconds > 0 || !added) { // Show seconds if nothing else or if it is seconds
+        if (seconds > 0 || !added) { 
             if (added)
                 sb.append(" ").append(splitter);
             sb.append(seconds).append(" ").append(getUnit(seconds, messagesConfig, "seconds", "second"));

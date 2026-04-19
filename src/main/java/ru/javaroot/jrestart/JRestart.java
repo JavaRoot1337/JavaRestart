@@ -10,33 +10,21 @@ public class JRestart extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig(); // Keep this as it's standard practice and not explicitly removed
-        // 1. Load MessagesConfig FIRST
+        saveDefaultConfig();
         this.messagesConfig = new MessagesConfig(this);
-
-        // 2. Load ConfigManager (depends on MessagesConfig implicitly if we passed it,
-        // but here it reloads config)
         this.configManager = new ConfigManager(this);
-
-        // 3. Initialize managers
         this.restartManager = new RestartManager(this);
         this.voteManager = new VoteManager(this);
-
-        // 4. Register commands
-        getCommand("jrestart").setExecutor(new RestartCommand(this));
-        getCommand("jrestart").setTabCompleter(new RestartCommand(this));
-
-        // 5. Start tasks
+        RestartCommand restartCommand = new RestartCommand(this);
+        getCommand("jrestart").setExecutor(restartCommand);
+        getCommand("jrestart").setTabCompleter(restartCommand);
+        getServer().getPluginManager().registerEvents(new RestartListener(this), this);
         getServer().getScheduler().runTaskTimer(this, restartManager, 20L, 20L);
-
         getLogger().info("JavaRestart enabled!");
     }
 
     @Override
     public void onDisable() {
-        if (restartManager != null) {
-            // Logic to save state if needed?
-        }
         getLogger().info("JavaRestart disabled!");
     }
 
