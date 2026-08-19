@@ -19,6 +19,11 @@ messages:
   bossbar_technical: "&cТехнический рестарт &7через: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
   bossbar_daily: "&#3DFF24Ежедневный рестарт &7через: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
   kick_message: "&cСервер перезагружается."
+  type_disabled: "&cЭтот тип рестарта (%type%) отключен."
+  no_permission: "&cУ вас нет прав."
+  only_players: "&cТолько для игроков."
+  invalid_type: "&cНеверный тип. Доступно: technical, daily, vote."
+  invalid_time: "&cНеверное время."
   
   format:
      seconds: 'секунд'

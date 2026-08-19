@@ -1,6 +1,8 @@
+# команды перед рестартом
 RestartCMD:
   - "save-all"
 
+# расписание
 restarts:
   - 'Понедельник;00;00'
   - 'Понедельник;12;00'
@@ -16,8 +18,8 @@ restarts:
   - 'Суббота;12;00'
   - 'Воскресенье;00;00'
   - 'Воскресенье;12;00'
-  #- 'Ежедневно;00;00'
 
+# тайтлы (сек)
 TitleAtIntervals:
   - 300
   - 60
@@ -29,6 +31,7 @@ TitleAtIntervals:
   - 2
   - 1
 
+# звуки (сек)
 soundAtIntervals:
   - 300
   - 60
@@ -41,11 +44,19 @@ soundAtIntervals:
   - 2
   - 1
 
+# типы
+types:
+  technical: true
+  daily: true
+  vote: false
+
+# настройки
 settings:
   sound: 'UI_BUTTON_CLICK'
   restart_delay_seconds: 3
   restart_cmd_offset: 15
 
+# голосование
 vote:
   min_players: 10
   percentage: 70

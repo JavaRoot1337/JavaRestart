@@ -1,29 +1,44 @@
 # JavaRestart
 
-Minecraft плагин для автоматических и ручных перезагрузок сервера. Поддерживает расписание, голосование и уведомления.
+> What is it?
 
-## Особенности
+A Paper 26.2 plugin for scheduled, manual, and vote-based server restarts.
 
-- Автоматические перезагрузки по расписанию
-- Ручные перезагрузки (админ команды)
-- Система голосования за перезагрузку
-- Уведомления в чате и через bossbar
-- Настройка звуков и сообщений
-- Поддержка русского языка
+> Why was it rewritten?
 
-## Команды
+The old code worked, but its package layout and restart state were harder to follow. The plugin was rebuilt from the ground up with a smaller structure and explicit lifecycle ownership.
 
-- `/jrestart` - основная команда
-- `/jrestart reload` - перезагрузить конфиг
-- `/jrestart now` - перезагрузить сейчас
-- `/jrestart cancel` - отменить перезагрузку
-- `/jrestart time` - время до перезагрузки
-- `/jrestart vote` - проголосовать за перезагрузку
+> What changed?
 
-## Настройка
+- Moved the main class to `ru.javaroot.JRestart`.
+- Split configuration, commands, restart logic, voting, and time formatting into focused packages.
+- Reworked scheduler, reload, bossbar, shutdown, and vote cleanup paths.
+- Prevented repeated interval notifications and stale player votes.
+- Added validation for invalid schedule entries.
+- Removed unnecessary wrappers, comments, and global state access.
+- Kept the existing YAML keys and user-facing behavior.
 
-Все настройки в `config.yml`:
-- Расписание перезагрузок
-- Тайминги уведомлений
-- Параметры голосования
-- Звуки и задержки
+> What does it target?
+
+Paper 26.2 and Java 25.
+
+> Which commands exist?
+
+```text
+/jrestart
+/jrestart reload
+/jrestart now
+/jrestart cancel
+/jrestart time
+/jrestart vote
+```
+
+> Where is the configuration?
+
+In `config.yml` and `messages.yml`. Both files remain customizable and were kept unchanged during the rewrite.
+
+> How is it built?
+
+```text
+mvn clean package
+```

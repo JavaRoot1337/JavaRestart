@@ -1,22 +1,16 @@
 name: JavaRestart
-version: ${project.version}
-main: ru.javaroot.jrestart.JRestart
-api-version: 1.21
+version: 1.0
+main: ru.javaroot.JRestart
+api-version: '26.2'
 authors: [JavaRoot]
 commands:
   jrestart:
-    description: главная команда
+    description: Основная команда JavaRestart
     usage: /jrestart
 permissions:
-  jrestart.use:
-    description: использование команд
-    default: true
-  jrestart.vote:
-    description: голос рестарта
-    default: true
   jrestart.admin:
-    description: адм пермс
+    description: Админ права для управления рестартами
     default: op
-    children:
-      jrestart.use: true
-      jrestart.vote: true
+  jrestart.use:
+    description: Права на просмотр времени и голосование
+    default: true
