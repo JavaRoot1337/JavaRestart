@@ -1,47 +1,53 @@
 package ru.javaroot;
 
-import org.bukkit.command.PluginCommand;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
+import java.util.List;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.javaroot.cfg.ConfigMgr;
-import ru.javaroot.cfg.MsgCfg;
-import ru.javaroot.command.RestartCmd;
-import ru.javaroot.restart.RestartMgr;
-import ru.javaroot.vote.VoteMgr;
+import ru.javaroot.cfg.Cfg;
+import ru.javaroot.cfg.Msg;
+import ru.javaroot.cmd.RestartCmd;
+import ru.javaroot.plat.sched.Exec;
+import ru.javaroot.restart.RestartSvc;
+import ru.javaroot.vote.VoteList;
+import ru.javaroot.vote.VoteSvc;
 
-public class JRestart extends JavaPlugin {
-    private RestartMgr restartMgr;
-    private VoteMgr voteMgr;
+public final class JRestart extends JavaPlugin {
+    private Exec exec;
+    private RestartSvc rstSvc;
+    private VoteSvc voteSvc;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
 
-        MsgCfg msgCfg = new MsgCfg(this);
-        ConfigMgr configMgr = new ConfigMgr(this, msgCfg);
-        restartMgr = new RestartMgr(this, configMgr, msgCfg);
-        voteMgr = new VoteMgr(configMgr, msgCfg, restartMgr);
+        exec = new Exec(this);
+        Msg msg = new Msg(this);
+        Cfg cfg = new Cfg(this);
+        rstSvc = new RestartSvc(exec, cfg, msg);
+        voteSvc = new VoteSvc(cfg, msg, rstSvc);
 
-        PluginCommand command = getCommand("jrestart");
-        if (command == null) {
-            getLogger().severe("Command jrestart is not registered");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
+        getServer().getPluginManager().registerEvents(new VoteList(voteSvc), this);
 
-        RestartCmd restartCmd = new RestartCmd(configMgr, msgCfg, restartMgr, voteMgr);
-        command.setExecutor(restartCmd);
-        command.setTabCompleter(restartCmd);
-        restartMgr.start();
-        getLogger().info("JavaRestart loaded");
+        RestartCmd cmd = new RestartCmd(cfg, msg, rstSvc, voteSvc);
+        getLifecycleManager().registerEventHandler(
+            LifecycleEvents.COMMANDS,
+            event -> event.registrar().register(cmd.build(), "Управление рестартами", List.of("jr"))
+        );
+
+        rstSvc.start();
+        getLogger().info("JavaRestart enabled");
     }
 
     @Override
     public void onDisable() {
-        if (restartMgr != null) {
-            restartMgr.stop();
+        if (rstSvc != null) {
+            rstSvc.stop();
         }
-        if (voteMgr != null) {
-            voteMgr.clearVotes();
+        if (voteSvc != null) {
+            voteSvc.clearVotes();
+        }
+        if (exec != null) {
+            exec.cancelAll();
         }
         getLogger().info("JavaRestart disabled");
     }
