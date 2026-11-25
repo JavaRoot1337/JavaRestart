@@ -1,12 +1,9 @@
 name: JavaRestart
-version: 1.0
+version: '${version}'
 main: ru.javaroot.JRestart
-api-version: '26.2'
+api-version: '1.21'
+folia-supported: true
 authors: [JavaRoot]
-commands:
-  jrestart:
-    description: Основная команда JavaRestart
-    usage: /jrestart
 permissions:
   jrestart.admin:
     description: Админ права для управления рестартами

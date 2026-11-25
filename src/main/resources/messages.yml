@@ -12,7 +12,7 @@ messages:
   vote_started: "&aВы проголосовали за рестарт. &e(%current%/%needed%)"
   vote_already: "&cВы уже голосовали."
   vote_not_enough_players: "&cНедостаточно игроков для голосования. Минимум: %min%"
-  vote_broadcast: "&eИгрок %player% проголосовал за рестарт. &f(%current%/%needed%) &7Напишите /jrestart vote" 
+  vote_broadcast: "&eИгрок %player% проголосовал за рестарт. &f(%current%/%needed%) &7Напишите /jrestart vote"
   title_save: "&cРестарт. Мир сохранен."
   subtitle_save: "&fСледующие изменения в мире не будут сохранены"
   title_bye: "&cПерезагрузка..."
@@ -20,18 +20,22 @@ messages:
   bossbar_daily: "&#3DFF24Ежедневный рестарт &7через: &#FF8B1D%hours% &7ч. &#FF8B1D%minutes% &7мин. &#FF8B1D%seconds% &7сек."
   kick_message: "&cСервер перезагружается."
   type_disabled: "&cЭтот тип рестарта (%type%) отключен."
-  no_permission: "&cУ вас нет прав."
+  no_permission: "&cНет прав."
   only_players: "&cТолько для игроков."
   invalid_type: "&cНеверный тип. Доступно: technical, daily, vote."
   invalid_time: "&cНеверное время."
-  
+
   format:
-     seconds: 'секунд'
-     second: 'секунда'
-     minutes: 'минут'
-     minute: 'минута'
-     hours: 'часов'
-     hour: 'час'
-     days: 'дней'
-     day: 'день'
-     splitter: 'и '
+    seconds: 'секунд'
+    seconds_few: 'секунды'
+    second: 'секунда'
+    minutes: 'минут'
+    minutes_few: 'минуты'
+    minute: 'минута'
+    hours: 'часов'
+    hours_few: 'часа'
+    hour: 'час'
+    days: 'дней'
+    days_few: 'дня'
+    day: 'день'
+    splitter: 'и '
