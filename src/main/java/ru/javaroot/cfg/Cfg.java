@@ -1,5 +1,6 @@
 package ru.javaroot.cfg;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public final class Cfg {
                 LocalTime time = LocalTime.of(hour, minute);
                 String day = parts[0].trim().toLowerCase(Locale.ROOT);
                 addDaySlots(out, day, time);
-            } catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException | DateTimeException ex) {
                 log.warning("Invalid schedule row: " + row);
             }
         }

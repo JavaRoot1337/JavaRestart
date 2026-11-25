@@ -5,10 +5,8 @@ plugins {
 group = "ru.javaroot"
 version = "2.0.0"
 
-val targetJava = 21
-
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(targetJava))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 repositories {
@@ -27,12 +25,12 @@ dependencies {
 tasks {
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(targetJava)
+        options.release.set(21)
     }
 
     compileTestJava {
         options.encoding = "UTF-8"
-        options.release.set(targetJava)
+        options.release.set(21)
     }
 
     processResources {
