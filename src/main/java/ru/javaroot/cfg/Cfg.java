@@ -39,7 +39,7 @@ public final class Cfg {
         String soundName = raw.getString("settings.sound");
         Sound sound = SoundKey.resolve(soundName);
         if (soundName != null && !soundName.isBlank() && sound == null) {
-            plug.getLogger().warning("Invalid sound in config.yml: " + soundName);
+            plug.getLogger().warning("Некорректный звук в config.yml: " + soundName);
         }
 
         int delaySec = Math.max(0, raw.getInt("settings.restart_delay_seconds", 3));
@@ -86,7 +86,7 @@ public final class Cfg {
         for (String row : rows) {
             String[] parts = row.split(";", -1);
             if (parts.length != 3) {
-                log.warning("Invalid schedule row: " + row);
+                log.warning("Некорректная строка расписания: " + row);
                 continue;
             }
             try {
@@ -96,7 +96,7 @@ public final class Cfg {
                 String day = parts[0].trim().toLowerCase(Locale.ROOT);
                 addDaySlots(out, day, time);
             } catch (IllegalArgumentException | DateTimeException ex) {
-                log.warning("Invalid schedule row: " + row);
+                log.warning("Некорректная строка расписания: " + row);
             }
         }
         return List.copyOf(out);
@@ -121,7 +121,7 @@ public final class Cfg {
             case "friday", "пятница" -> DayOfWeek.FRIDAY;
             case "saturday", "суббота" -> DayOfWeek.SATURDAY;
             case "sunday", "воскресенье" -> DayOfWeek.SUNDAY;
-            default -> throw new IllegalArgumentException("Unknown day: " + day);
+            default -> throw new IllegalArgumentException("Неизвестный день: " + day);
         };
     }
 

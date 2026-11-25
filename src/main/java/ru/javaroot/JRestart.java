@@ -35,7 +35,7 @@ public final class JRestart extends JavaPlugin {
         );
 
         rstSvc.start();
-        getLogger().info("JavaRestart enabled");
+        getLogger().info("JavaRestart включён");
     }
 
     @Override
@@ -49,6 +49,6 @@ public final class JRestart extends JavaPlugin {
         if (exec != null) {
             exec.cancelAll();
         }
-        getLogger().info("JavaRestart disabled");
+        getLogger().info("JavaRestart выключен");
     }
 }
