@@ -1,35 +1,51 @@
 # JavaRestart
 
-> Что это?
+Плагин рестартов сервера по расписанию, вручную и через голосование для Paper и Folia `1.21–26.4`.
 
-Плагин для Paper и Folia (`1.21` - `26.4`) для рестартов сервера по расписанию, вручную и через голосование.
+## Совместимость
 
-> Что изменилось в 2.0?
+| Параметр | Значение |
+| --- | --- |
+| Ядро | Paper, Folia (`folia-supported: true`) |
+| Minecraft | `1.21 – 26.4` |
+| Java | `21+` |
 
-- Сборка переведена с Maven на Gradle Kotlin DSL (`Java 21`).
-- Все задачи, тайтлы, звуки и кики переведены на Folia-совместимые планировщики (`GlobalRegionScheduler`, `EntityScheduler`, `AsyncScheduler`, `folia-supported: true`).
-- Добавлено кросс-версионное определение звуков через Adventure `Sound` и `RegistryAccess` (`1.21` - `26.4`).
-- Команда `/jrestart` (алиас `/jr`) переведена на Paper `LifecycleEvents.COMMANDS` (Brigadier).
-- Пакеты приведены к структуре `plat`, `cfg`, `restart`, `vote`, `cmd` с потокобезопасным состоянием и immutable-конфигом.
-- Добавлена очистка голосов при выходе игрока и модульные тесты.
+## Сборка
 
-> Под какую версию он собран?
-
-Paper и Folia `1.21` - `26.4`, `Java 21+`.
-
-> Какие команды есть?
-
-```text
-/jrestart
-/jrestart reload
-/jrestart now <technical|daily|vote> [секунды]
-/jrestart cancel
-/jrestart time
-/jrestart vote
+```powershell
+.\gradlew.bat build
 ```
 
-> Как собрать?
+Итоговый JAR: `build/libs/JavaRestart-2.0.0.jar`.
 
-```text
-./gradlew build
-```
+## Команды
+
+Основная команда: `/jrestart` (алиас: `/jr`).
+
+| Команда | Действие | Право |
+| --- | --- | --- |
+| `/jrestart` | Показать справку | `jrestart.use` |
+| `/jrestart time` | Остаток времени до рестарта | `jrestart.use` |
+| `/jrestart vote` | Проголосовать за рестарт | `jrestart.use` |
+| `/jrestart now <technical\|daily\|vote> [секунды]` | Запустить ручной рестарт | `jrestart.admin` |
+| `/jrestart cancel` | Отменить ручной рестарт | `jrestart.admin` |
+| `/jrestart reload` | Перезагрузить конфиг и сообщения | `jrestart.admin` |
+
+## Права
+
+| Право | Назначение | По умолчанию |
+| --- | --- | --- |
+| `jrestart.use` | Просмотр таймера и голосование | всем |
+| `jrestart.admin` | Управление рестартами и reload | op |
+
+## Конфигурация
+
+`plugins/JavaRestart/config.yml`:
+
+- `RestartCMD` — команды консоли перед рестартом (за `settings.restart_cmd_offset` сек)
+- `restarts` — расписание в формате `День;ЧЧ;ММ`
+- `TitleAtIntervals` / `soundAtIntervals` — интервалы оповещений в секундах
+- `types` — включение типов `technical`, `daily`, `vote`
+- `vote` — `min_players`, `percentage`, `restart_time`
+
+[English documentation](README.md)
